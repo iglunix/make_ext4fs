@@ -1,7 +1,7 @@
 SELIB = libselinux
 SPLIB = core/libsparse
 COLIB = core
-MALIB = extras/ext4_utils
+MALIB = ext4_utils
 
 all:
 	$(MAKE) -C $(SELIB)/src all

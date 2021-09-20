@@ -1,7 +1,7 @@
-SELIB = ../../libselinux
-ZLLIB = ../../zlib/src
-COLIB = ../../core
-SPLIB = ../../core/libsparse
+SELIB = ../libselinux
+ZLLIB = ../zlib/src
+COLIB = ../core
+SPLIB = ../core/libsparse
 AR = ar rcs
 OBJS = $(patsubst %.c,%.o,$(wildcard *.c))
 
