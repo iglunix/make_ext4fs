@@ -1,0 +1,3 @@
+*.o
+*.a
+make_ext4fs
