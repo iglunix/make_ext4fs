@@ -29,13 +29,14 @@
 #include <private/android_filesystem_config.h>
 #endif
 
-#ifndef USE_MINGW
+//#ifndef USE_MINGW
+#if 0
 #include <selinux/selinux.h>
 #include <selinux/label.h>
 #include <selinux/android.h>
 #else
-struct selabel_handle;
 #endif
+struct selabel_handle;
 
 #include "make_ext4fs.h"
 #include "ext4_utils.h"
@@ -76,7 +77,8 @@ int main(int argc, char **argv)
 	time_t fixed_time = -1;
 	struct selabel_handle *sehnd = NULL;
 	FILE* block_list_file = NULL;
-#ifndef USE_MINGW
+// #ifndef USE_MINGW
+#if 0 
 	struct selinux_opt seopts[] = { { SELABEL_OPT_PATH, "" } };
 #endif
 
@@ -134,7 +136,8 @@ int main(int argc, char **argv)
 			fprintf(stderr, "Warning: -t (initialize inode tables) is deprecated\n");
 			break;
 		case 'S':
-#ifndef USE_MINGW
+// #ifndef USE_MINGW
+#if 0
 			seopts[0].value = optarg;
 			sehnd = selabel_open(SELABEL_CTX_FILE, seopts, 1);
 			if (!sehnd) {

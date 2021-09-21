@@ -60,9 +60,11 @@
 
 #else
 
+#if 0
 #include <selinux/selinux.h>
 #include <selinux/label.h>
 #include <selinux/android.h>
+#endif
 
 #define O_BINARY 0
 
@@ -98,7 +100,8 @@ static u32 build_default_directory_structure(const char *dir_path,
 	inode_set_permissions(inode, dentries.mode,
 		dentries.uid, dentries.gid, dentries.mtime);
 
-#ifndef USE_MINGW
+//#ifndef USE_MINGW
+#if 0
 	if (sehnd) {
 		char *path = NULL;
 		char *secontext = NULL;
@@ -202,7 +205,8 @@ static u32 build_directory_structure(const char *full_path, const char *dir_path
 			error("can't set android permissions - built without android support");
 #endif
 		}
-#ifndef USE_MINGW
+// #ifndef USE_MINGW
+#if 0
 		if (sehnd) {
 			if (selabel_lookup(sehnd, &dentries[i].secon, dentries[i].path, stat.st_mode) < 0) {
 				error("cannot lookup security context for %s", dentries[i].path);
@@ -253,10 +257,12 @@ static u32 build_directory_structure(const char *full_path, const char *dir_path
 		dentries[0].file_type = EXT4_FT_DIR;
 		dentries[0].uid = 0;
 		dentries[0].gid = 0;
+#if 0
 		if (sehnd) {
 			if (selabel_lookup(sehnd, &dentries[0].secon, dentries[0].path, dentries[0].mode) < 0)
 				error("cannot lookup security context for %s", dentries[0].path);
 		}
+#endif
 		entries++;
 		dirs++;
 	}
@@ -601,7 +607,8 @@ int make_ext4fs_internal(int fd, const char *_directory,
 	root_mode = S_IRWXU | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH;
 	inode_set_permissions(root_inode_num, root_mode, 0, 0, 0);
 
-#ifndef USE_MINGW
+// #ifndef USE_MINGW
+#if 0
 	if (sehnd) {
 		char *secontext = NULL;
 
