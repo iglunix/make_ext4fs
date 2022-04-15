@@ -5,14 +5,14 @@ OBJS = $(patsubst %.c,%.o,$(wildcard *.c))
 all:libsparse.a simg2img
 
 libsparse.a:
-	$(CC) -Iinclude -c backed_block.c output_file.c sparse.c sparse_crc32.c sparse_err.c sparse_read.c;
+	$(CC) $(CFLAGS) -Iinclude -c backed_block.c output_file.c sparse.c sparse_crc32.c sparse_err.c sparse_read.c;
 	$(AR) libsparse.a *.o
 	
 simg2img:
-	$(CC) -Iinclude -I$(ZLLIB) -o simg2img simg2img.c sparse_crc32.c libsparse.a $(ZLLIB)/libz.a
+	$(CC) $(CFLAGS) -Iinclude -I$(ZLLIB) -o simg2img simg2img.c sparse_crc32.c libsparse.a $(ZLLIB)/libz.a
 	
 img2simg:
-	$(CC) -Iinclude -I$(ZLLIB) -o img2simg img2simg.c sparse_crc32.c libsparse.a $(ZLLIB)/libz.a
+	$(CC) $(CFLAGS) -Iinclude -I$(ZLLIB) -o img2simg img2simg.c sparse_crc32.c libsparse.a $(ZLLIB)/libz.a
 	
 clean:
 	rm -f $(OBJS)
